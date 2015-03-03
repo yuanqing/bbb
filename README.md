@@ -32,7 +32,7 @@ $ bbb 3 -- "./foo < bar"
 0.015
 ```
 
-You would typically pipe the results to a file for further analysis:
+You would typically redirect the results to a file for further analysis:
 
 ```
 $ bbb 1000 -- "./foo < bar" > results
@@ -41,7 +41,7 @@ $ bbb 1000 -- "./foo < bar" > results
 ## CLI
 
 ```
-usage: bbb [num_iterations] run_command
+usage: bbb [num_iterations] -- run_command
 ```
 
 - `num_iterations` &mdash; Number of times to invoke the `run_command`.
