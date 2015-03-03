@@ -23,7 +23,7 @@ $ bbb -- "./foo < bar"
 
 If the command involves piping or I/O redirection (as is the case in our example), the command must be enclosed in quotes.
 
-By default, ten iterations are run. Change the number of iterations like so:
+By default, 10 iterations are run. Change the number of iterations like so:
 
 ```
 $ bbb 3 -- "./foo < bar"
@@ -32,10 +32,21 @@ $ bbb 3 -- "./foo < bar"
 0.015
 ```
 
-You would typically redirect the results to a file for further analysis:
+You would typically dump the results to a file for further analysis:
 
 ```
 $ bbb 1000 -- "./foo < bar" > results
+```
+
+Or, if you have [R](http://www.r-project.org/) installed, you could also pipe the results to a [handy little Rscript](https://github.com/yuanqing/bbb/blob/master/stats.R) that crunches the numbers for you:
+
+```
+$ bbb 1000 -- "./foo < bar" | ./stats.R
+mean    0.02248
+median  0.01800
+sd      0.02538
+min     0.01700
+max     0.19800
 ```
 
 ## CLI
