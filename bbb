@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# check if number of iterations was specified; default to 10
+if [ "$1" -eq "$1" ] 2>/dev/null; then
+  n="$1"
+  shift
+else
+  n=10
+fi
+
+# drop the "--" if it was specified
+if [ "$1" == "--" ]; then
+  shift
+fi
+
+# exit if no run command specified
+if [ "$#" -eq 0 ]; then
+  echo "$0: need a command" 1>&2
+  echo "usage: $0 [num_iterations] run_command" 1>&2
+  exit 1
+fi
+
+# only output real time
+TIMEFORMAT=%3R
+
+# pipe `stdout` (ie. the run command's output) to `/dev/null`, and pipe
+# `stderr` (ie. the `time` program's output) to `stdout`
+for (( i=0; i<n; i++ )); do
+  time (eval "$@" > /dev/null) 2>&1
+done
