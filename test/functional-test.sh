@@ -10,8 +10,10 @@ stats() {
   # exited with exit code 0
   [ "$?" -eq 0 ]
   # check number of iterations
-  str=$(echo "$1" | tail -n +2 | head -n 1)
-  [ "$str" == "n       $2" ]
+  case $(echo "$1" | tail -n +2) in
+    "n       $2"*);;
+    *) exit 1;;
+  esac
 }
 
 raw() {
