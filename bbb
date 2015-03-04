@@ -45,7 +45,7 @@ command -v Rscript >/dev/null 2>&1
 if [ "$?" -eq 0 ]; then
   has_r=1
 else
-  has_r=0
+  has_r=""
 fi
 
 # default number of iterations is 10
