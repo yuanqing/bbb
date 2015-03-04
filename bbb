@@ -3,7 +3,7 @@
 error() {
   echo "$0: $1" 1>&2
   if [ -n "$2" ]; then
-    echo "usage: $0 [num_iterations] -- run_command" 1>&2
+    echo "usage: $0 [num_iterations] [-r] -- run_command" 1>&2
   fi
   exit 1
 }
