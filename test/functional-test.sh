@@ -30,10 +30,10 @@ it_prints_raw_with_custom_num_iterations() {
 }
 
 it_prints_stats() {
-  stats "$(bbb -s -- echo foo 2>&1)" 10
+  stats "$(bbb -r -- echo foo 2>&1)" 10
 }
 
 it_prints_stats_with_custom_num_iterations() {
-  stats "$(bbb -s 2 -- echo foo 2>&1)" 2
-  stats "$(bbb 2 -s -- echo foo 2>&1)" 2
+  stats "$(bbb -r 2 -- echo foo 2>&1)" 2
+  stats "$(bbb 2 -r -- echo foo 2>&1)" 2
 }

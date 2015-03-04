@@ -18,11 +18,11 @@ it_errors_without_arguments() {
 
 it_errors_without_a_run_command() {
   errors "$(bbb 2)"
-  errors "$(bbb -s)"
-  errors "$(bbb 2 -s)"
-  errors "$(bbb -s 2)"
+  errors "$(bbb -r)"
+  errors "$(bbb 2 -r)"
+  errors "$(bbb -r 2)"
   errors "$(bbb 2 --)"
-  errors "$(bbb -s --)"
-  errors "$(bbb 2 -s --)"
-  errors "$(bbb -s 2 --)"
+  errors "$(bbb -r --)"
+  errors "$(bbb 2 -r --)"
+  errors "$(bbb -r 2 --)"
 }

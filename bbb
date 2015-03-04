@@ -18,9 +18,9 @@ while [ "$#" -gt 0 ]; do
     continue
   fi
 
-  # check if the stats flag is specified
-  if [ -z "$s" ] && [ "$1" == "-s" ]; then
-    s=1
+  # check if the "-r" flag is specified
+  if [ -z "$r" ] && [ "$1" == "-r" ]; then
+    r=1
     shift
     continue
   fi
@@ -62,9 +62,9 @@ for (( i=0; i<n; i++ )); do
   time (eval "$@" > /dev/null) 2>&1
 done |
 
-# pipe to `Rscript` to compute stats if "-s" flag is set and `Rscript` is
+# pipe to `Rscript` to compute stats if "-r" flag is set and `Rscript` is
 # installed, else print the raw timings
-if [ -n "$s" ] && [ -n "$has_r" ]; then
+if [ -n "$r" ] && [ -n "$has_r" ]; then
   Rscript -e 'data <- scan("stdin", quiet=TRUE)' \
           -e 'printf <- function(...) cat(sprintf(...))' \
           -e 'printf("n       %d\\n", NROW(data))' \
