@@ -1,13 +1,5 @@
 #!/bin/bash
 
-error() {
-  echo "$0: $1" 1>&2
-  if [ -n "$2" ]; then
-    echo "usage: $0 [num_iterations] [-r] -- run_command" 1>&2
-  fi
-  exit 1
-}
-
 # parse arguments
 while [ "$#" -gt 0 ]; do
 
@@ -37,7 +29,9 @@ done
 
 # exit if no run command specified
 if [ "$#" -eq 0 ]; then
-  error "need a command"
+  echo "$0: need a command" 1>&2
+  echo "usage: $0 [num_iterations] [-r] -- run_command" 1>&2
+  exit 1
 fi
 
 # check if `Rscript` is installed
