@@ -21,7 +21,7 @@ $ bbb -- "./foo < bar"
 0.027
 ```
 
-If the command involves piping or I/O redirection (as is the case in our example), the command must be enclosed in quotes.
+Note that if the command involves piping or I/O redirection (as is the case in our example), the command must be enclosed in quotes.
 
 By default, 10 iterations are run. Change the number of iterations like so:
 
@@ -38,10 +38,11 @@ You would typically dump the results to a file for further analysis:
 $ bbb 1000 -- "./foo < bar" > results
 ```
 
-Or, if you have [R](http://www.r-project.org/) installed, you could also pipe the results to a [handy little Rscript](https://github.com/yuanqing/bbb/blob/master/stats.R) that crunches the numbers for you:
+Of, if you have [R](http://r-project.org/) installed, specify the `-r` flag to quickly crunch the numbers directly from the shell:
 
 ```
-$ bbb 1000 -- "./foo < bar" | ./stats.R
+$ bbb 1000 -r -- "./foo < bar"
+n       1000
 mean    0.02248
 median  0.01800
 sd      0.02538
@@ -52,10 +53,11 @@ max     0.19800
 ## CLI
 
 ```
-usage: bbb [num_iterations] -- run_command
+usage: bbb [num_iterations] [-r] -- run_command
 ```
 
 - `num_iterations` &mdash; Number of times to invoke the `run_command`.
+- `-r` &mdash; Computes some rudimentary statistics. Requires [R](http://www.r-project.org/).
 - `run_command` &mdash; The command to invoke the program being benchmarked, eg. `./a.out`, or `"./foo < bar"` (note the quotes).
 
 ## Tests
@@ -76,8 +78,12 @@ $ curl -L https://raw.github.com/yuanqing/bbb/master/bbb -o /usr/local/bin/bbb
 $ chmod +x /usr/local/bin/bbb
 ```
 
+Computing statistics via the `-r` flag requires [R](http://www.r-project.org/).
+
 ## Changelog
 
+- 0.2.0
+  - Add `-r` flag
 - 0.1.0
   - Initial release
 
