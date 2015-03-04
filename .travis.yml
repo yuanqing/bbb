@@ -1,6 +1,7 @@
 language: bash
 
 before_script:
+  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh && bash ./travis-tool.sh bootstrap
   - chmod +x bbb
 
 script:
