@@ -38,7 +38,7 @@ You would typically dump the results to a file for further analysis:
 $ bbb 1000 -- "./foo < bar" > results
 ```
 
-Of, if you have [R](http://r-project.org/) installed, specify the `-r` flag to quickly crunch the numbers directly from the shell:
+Or, if you have [R](http://r-project.org/) installed, use the `-r` flag to quickly crunch the numbers without leaving the shell:
 
 ```
 $ bbb 1000 -r -- "./foo < bar"
@@ -77,8 +77,6 @@ To install `bbb` into `/usr/local/bin`, simply do:
 $ curl -L https://raw.github.com/yuanqing/bbb/master/bbb -o /usr/local/bin/bbb
 $ chmod +x /usr/local/bin/bbb
 ```
-
-Computing statistics via the `-r` flag requires [R](http://www.r-project.org/).
 
 ## Changelog
 
