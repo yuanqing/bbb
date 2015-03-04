@@ -1,4 +1,4 @@
-# bbb [![Version](https://img.shields.io/badge/version-v0.2.0-orange.svg?style=flat)](https://github.com/yuanqing/bbb/releases) [![Build Status](https://img.shields.io/travis/yuanqing/bbb.svg?branch=master&style=flat)](https://travis-ci.org/yuanqing/bbb)
+# bbb [![Version](https://img.shields.io/badge/version-v0.2.1-orange.svg?style=flat)](https://github.com/yuanqing/bbb/releases) [![Build Status](https://img.shields.io/travis/yuanqing/bbb.svg?branch=master&style=flat)](https://travis-ci.org/yuanqing/bbb)
 
 > A tiny Bash utility for benchmarking tiny programs.
 
