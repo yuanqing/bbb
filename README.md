@@ -4,7 +4,7 @@
 
 ## Usage
 
-To obtain the time (in seconds) to run a program, pass the command to invoke said program to `bbb`:
+`bbb` runs a program repeatedly and outputs the time (in seconds) each run takes to complete:
 
 ```
 $ gcc foo.c -o foo
@@ -21,7 +21,7 @@ $ bbb -- "./foo < bar"
 0.027
 ```
 
-Note that if the command involves piping or I/O redirection (as is the case in our example), the command must be enclosed in quotes.
+If the command to invoke the program involves piping or I/O redirection (as is the case in our example), the command must be enclosed in quotes.
 
 By default, 10 iterations are run. Change the number of iterations like so:
 
