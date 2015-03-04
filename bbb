@@ -1,23 +1,56 @@
 #!/bin/bash
 
-# check if number of iterations was specified; default to 10
-if [ "$1" -eq "$1" ] 2>/dev/null; then
-  n="$1"
-  shift
-else
-  n=10
-fi
+error() {
+  echo "$0: $1" 1>&2
+  if [ -n "$2" ]; then
+    echo "usage: $0 [num_iterations] -- run_command" 1>&2
+  fi
+  exit 1
+}
 
-# drop the "--" if it was specified
-if [ "$1" == "--" ]; then
+# parse arguments
+while [ "$#" -gt 0 ]; do
+
+  # check if number of iterations is specified
+  if [ -z "$n" ] && [ "$1" -eq "$1" ] 2>/dev/null && [ "$1" -gt 0 ]; then
+    n="$1"
+    shift
+    continue
+  fi
+
+  # check if the stats flag is specified
+  if [ -z "$s" ] && [ "$1" == "-s" ]; then
+    s=1
+    shift
+    continue
+  fi
+
+  # "--" indicates the start of the run command
+  if [ "$1" == "--" ]; then
+    shift
+    break
+  fi
+
   shift
-fi
+
+done
 
 # exit if no run command specified
 if [ "$#" -eq 0 ]; then
-  echo "$0: need a command" 1>&2
-  echo "usage: $0 [num_iterations] run_command" 1>&2
-  exit 1
+  error "need a command"
+fi
+
+# check if `Rscript` is installed
+command -v Rscript >/dev/null 2>&1
+if [ "$?" -eq 0 ]; then
+  has_r=1
+else
+  has_r=0
+fi
+
+# default number of iterations is 10
+if [ -z "$n" ]; then
+  n=10
 fi
 
 # only output real time
@@ -27,4 +60,19 @@ TIMEFORMAT=%3R
 # `stderr` (ie. the `time` program's output) to `stdout`
 for (( i=0; i<n; i++ )); do
   time (eval "$@" > /dev/null) 2>&1
-done
+done |
+
+# pipe to `Rscript` to compute stats if "-s" flag is set and `Rscript` is
+# installed, else print the raw timings
+if [ -n "$s" ] && [ -n "$has_r" ]; then
+  Rscript -e 'data <- scan("stdin", quiet=TRUE)' \
+          -e 'printf <- function(...) cat(sprintf(...))' \
+          -e 'printf("n       %d\\n", NROW(data))' \
+          -e 'printf("mean    %.5f\\n", mean(data))' \
+          -e 'printf("median  %.5f\\n", median(data))' \
+          -e 'printf("sd      %.5f\\n", sd(data))' \
+          -e 'printf("min     %.5f\\n", min(data))' \
+          -e 'printf("max     %.5f\\n", max(data))'
+else
+  cat
+fi
