@@ -57,8 +57,8 @@ usage: bbb [num_iterations] [-r] -- run_command
 ```
 
 - `num_iterations` &mdash; Number of times to invoke the `run_command`.
-- `-r` &mdash; Computes some rudimentary statistics. Requires [R](http://www.r-project.org/).
-- `run_command` &mdash; The command to invoke the program being benchmarked, eg. `./a.out`, or `"./foo < bar"` (note the quotes).
+- `-r` &mdash; Print some rudimentary statistics instead of the raw timings. Requires [R](http://www.r-project.org/).
+- `run_command` &mdash; The command to invoke the program being benchmarked, eg. `./foo`, or `"./foo < bar"` (note the quotes).
 
 ## Tests
 
