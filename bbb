@@ -30,7 +30,10 @@ done
 # exit if no run command specified
 if [ "$#" -eq 0 ]; then
   echo "$0: need a command" 1>&2
-  echo "usage: $0 [num_iterations] [-r] -- run_command" 1>&2
+  printf "Usage: $0 [num_iterations] [-r] -- run_command\n\
+  run_cmd: The command to invoke the program being benchmarked.\n\
+  num_iterations: Number of times to run the program.\n\
+  -r: Print statistics instead of the raw timings. Requires R.\n" 1>&2
   exit 1
 fi
 
