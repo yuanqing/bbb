@@ -53,12 +53,11 @@ max     0.19800
 ## CLI
 
 ```
-usage: bbb [num_iterations] [-r] -- run_command
+Usage: bbb [num_iterations] [-r] -- run_command
+  run_cmd: The command to invoke the program being benchmarked.
+  num_iterations: Number of times to run the program.
+  -r: Print statistics instead of the raw timings. Requires R.
 ```
-
-- `num_iterations` &mdash; Number of times to invoke the `run_command`.
-- `-r` &mdash; Print some rudimentary statistics instead of the raw timings. Requires [R](http://www.r-project.org/).
-- `run_command` &mdash; The command to invoke the program being benchmarked, eg. `./foo`, or `"./foo < bar"` (note the quotes).
 
 ## Tests
 
@@ -77,6 +76,8 @@ To install `bbb` into `/usr/local/bin`, simply do:
 $ curl -L https://raw.github.com/yuanqing/bbb/master/bbb -o /usr/local/bin/bbb
 $ chmod +x /usr/local/bin/bbb
 ```
+
+You also need to [install R](http://cran.r-project.org/doc/manuals/r-release/R-admin.html) if you want statistics (via the `-r` flag).
 
 ## Changelog
 
